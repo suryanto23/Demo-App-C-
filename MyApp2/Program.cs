@@ -27,9 +27,9 @@ namespace MyApp2
             {
                 Console.Write("Enter Your Guess: ");
                 var answer = Int32.Parse(Console.ReadLine());
+                Console.WriteLine();
                 if (answer == target)
                 {
-                    Console.WriteLine();
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine($"You did it! the correct number is {target}");
                     Console.WriteLine("You Win!");
@@ -39,7 +39,6 @@ namespace MyApp2
                 else
                 {
                     life--;
-                    Console.WriteLine();
                     if (life > 0)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
