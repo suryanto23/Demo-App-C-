@@ -42,15 +42,14 @@ namespace MyApp2
                     if (life > 0)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Wrong, the number is " + ((answer < target) ? "greater" : "less") + " than your answer");
-                        Console.ResetColor();
+                        Console.WriteLine("Wrong, the number is " + ((answer < target) ? "greater" : "less") + " than your answer"); 
                     }
                     else
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine($"The correct number is {target}");
-                        Console.ResetColor();
                     }
+                    Console.ResetColor();
                     Console.WriteLine("You " + ((life == 0) ? "are running out of chance!" : $"have {life} chance left"));
                 };
             }
