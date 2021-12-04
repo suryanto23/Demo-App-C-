@@ -12,7 +12,44 @@ namespace MyApp2
         {
             // GuessingGame();
             // SimpleLoginAuth();
-            OptionMenu();
+            // OptionMenu();
+            FizzBuzz();
+        }
+
+        static void FizzBuzz()
+        {
+            Console.WriteLine("===== Welcome to FizzBuzz! =====");
+            Console.WriteLine();
+            Console.WriteLine("How many times should I loop?");
+            Console.Write("Enter a number: ");
+            int number;
+            int.TryParse(Console.ReadLine(), out number);
+            Console.WriteLine("Which multiplier should I generate both Fizz and Buzz?");
+            Console.Write("Enter a number: ");
+            int multiplier;
+            int.TryParse(Console.ReadLine(), out multiplier);
+            Console.WriteLine();
+            Console.WriteLine($"Generating {number} loops");
+            Console.WriteLine($"Even number is Fizz, odd number is Buzz, and the multiplier of {multiplier} is FizzBuzz!");
+            Console.WriteLine();
+            for (int i = 1; i <= number; i++)
+            {
+                if(i % multiplier == 0)
+                {   
+                    Console.ForegroundColor = ConsoleColor.DarkYellow;
+                    Console.WriteLine("FizzBuzz");
+                } else if(i % 2 == 0)
+                {
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.WriteLine("Fizz");
+                } else if (i % 2 != 0)
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("Buzz");
+                }
+                Console.ResetColor();
+            }
+            Console.WriteLine();
         }
 
         static void OptionMenu()
