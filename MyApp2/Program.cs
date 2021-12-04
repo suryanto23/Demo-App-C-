@@ -10,7 +10,41 @@ namespace MyApp2
     {
         static void Main(string[] args)
         {
-            GuessingGame();
+            // GuessingGame();
+            SimpleLoginAuth();
+        }
+
+        static void SimpleLoginAuth()
+        {
+            string username = "admin";
+            string password = "123";
+            int count = 3;
+
+            while (count > 0)
+            {
+                Console.Write("Username: ");
+                string usernameInput = Console.ReadLine();
+                Console.Write("Password: ");
+                string passwordInput = Console.ReadLine();
+
+                if (usernameInput == username && passwordInput == password)
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("Login success!");
+                    Console.ResetColor();
+                    break;
+
+                }
+                else
+                {
+                    count--;
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine($"Login failed, chance to attemp : {count}");
+                }
+                Console.ResetColor();
+                Console.WriteLine();
+            }
+            if (count == 0) Console.WriteLine("Login failed 3 times, rejected by program");
         }
 
         static void GuessingGame()
