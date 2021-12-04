@@ -6,3 +6,4 @@ First project in C#, creating a console application in with OOP paradigm :
 - Star loop generator
 - Guessing game
 - Simple login authentication
+- Console option menu
