@@ -11,7 +11,56 @@ namespace MyApp2
         static void Main(string[] args)
         {
             // GuessingGame();
-            SimpleLoginAuth();
+            // SimpleLoginAuth();
+            OptionMenu();
+        }
+
+        static void OptionMenu()
+        {
+            int items = 3;
+            int current = 0;
+            bool done = false;
+
+            while (!done)
+            {
+                for (int i = 1; i <= items; i++)
+                {
+                    if (current == i)
+                    {
+                        Console.ForegroundColor = ConsoleColor.DarkBlue;
+                        Console.Write("> ");
+                    }
+                    else
+                    {
+                        Console.Write("  ");
+                    }
+
+                    Console.WriteLine("item " + i);
+
+                    Console.ResetColor();
+                }
+
+                // Arrow conditional handling
+                switch (Console.ReadKey(true).Key)
+                {
+                    case ConsoleKey.UpArrow:
+                        current = Math.Max(1, current - 1);
+                        break;
+                    case ConsoleKey.DownArrow:
+                        current = Math.Min(items, current + 1);
+                        break;
+                    case ConsoleKey.Enter:
+                        done = true;
+                        break;
+                }
+
+                // Render only once, always on top
+                if (!done)
+                    Console.CursorTop = Console.CursorTop - items;
+            }
+
+            Console.WriteLine();
+            Console.WriteLine($"You have select {current}.");
         }
 
         static void SimpleLoginAuth()
