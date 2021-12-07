@@ -8,3 +8,4 @@ First project in C#, creating a console application in with OOP paradigm :
 - Simple login authentication
 - Console option menu
 - Fizzbuzz generator
+- Dummy txt database file: get, insert, delete
