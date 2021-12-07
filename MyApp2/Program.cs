@@ -34,15 +34,17 @@ namespace MyApp2
             Console.WriteLine();
             for (int i = 1; i <= number; i++)
             {
-                if(i % multiplier == 0)
-                {   
+                if (i % multiplier == 0)
+                {
                     Console.ForegroundColor = ConsoleColor.DarkYellow;
                     Console.WriteLine("FizzBuzz");
-                } else if(i % 2 == 0)
+                }
+                else if (i % 2 == 0)
                 {
                     Console.ForegroundColor = ConsoleColor.Blue;
                     Console.WriteLine("Fizz");
-                } else if (i % 2 != 0)
+                }
+                else if (i % 2 != 0)
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("Buzz");
@@ -162,7 +164,7 @@ namespace MyApp2
                     if (life > 0)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Wrong, the number is " + ((answer < target) ? "greater" : "less") + " than your answer"); 
+                        Console.WriteLine("Wrong, the number is " + ((answer < target) ? "greater" : "less") + " than your answer");
                     }
                     else
                     {
