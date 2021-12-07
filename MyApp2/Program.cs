@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.IO;
-
-using MyApp2;
 
 namespace MyApp2
 {
@@ -16,158 +13,7 @@ namespace MyApp2
             // GuessingGame();
             // SimpleLoginAuth();
             // OptionMenu();
-            // FizzBuzz();
-            dataText();
-        }
-
-        static void dataText()
-        {
-            string fileName = "data.txt";
-            string filePath = @"C:\Users\user\Desktop\db-demo-c-sharp";
-            string fullPath = $"{filePath}\\{fileName}";            
-            if (!Directory.Exists(filePath)) Directory.CreateDirectory(filePath);
-            // Format : guid,name,weapon
-            if (!File.Exists(fullPath)) File.WriteAllText(fullPath , "");
-
-            while (true)
-            {                              
-                Console.Clear();
-                DisplayMenu();
-                int menuInput = SelectMenu();
-                Console.WriteLine();               
-          
-                switch(menuInput)
-                {
-                    case 1:
-                        getAllNames(fullPath);                                                
-                        break;
-                    case 2:
-                        insertData(fullPath);
-                        break;
-                    case 3:
-
-                        break;
-                    case 4:
-                        deleteData(fullPath);
-                        break;
-                }
-
-                Console.Write("Press any key to repeat ");
-                Console.ReadKey();
-                Console.Clear();                
-            }
-        }
-
-        static void DisplayMenu()
-        {
-            Console.WriteLine("======== Menu =========");
-            Console.WriteLine();
-            Console.WriteLine(" [1] Get All Name");
-            Console.WriteLine(" [2] Insert New Data");
-            Console.WriteLine(" [3] Update Data ");
-            Console.WriteLine(" [4] Delete Data ");
-            Console.WriteLine();
-            Console.WriteLine("=======================");
-        }
-
-        static int SelectMenu()
-        {
-            int menuInput = 0;
-            while (!(menuInput > 0 && menuInput < 5))
-            {
-                Console.Write("Insert your option : ");
-                int.TryParse(Console.ReadLine(), out menuInput);
-            }
-            return menuInput;
-        }
-
-        static void dispatchSuccess(string text)
-        {
-            Console.WriteLine();
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine(text);
-            Console.WriteLine();
-            Console.ResetColor();
-        }
-
-        static void dispatchFail(string text)
-        {
-            Console.WriteLine();
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine(text);
-            Console.WriteLine();
-            Console.ResetColor();
-        }
-
-        static void deleteData(string fullPath)
-        {
-            string[] rows = getAllData(fullPath);
-            Console.Write("Search Name to Delete : ");
-            string name = Console.ReadLine().Trim();
-            bool found = false;
-            for (int i = 0; i < rows.Length; i++)
-            {
-                if(rows[i].Length > 0)
-                {
-                    string[] data = rows[i].Split(',');
-                    if (data[1] == name)
-                    {
-                        rows[i] = "";
-                        found = true;
-                    }
-                }
-
-            } 
-            if (found)
-            {
-                string newData = string.Join(";", rows);
-                File.WriteAllText(fullPath , newData);
-                dispatchSuccess("File Deleted");
-            }
-            else
-            {
-                dispatchFail("File Not Found!");
-            }
-        }
-
-        static void insertData(string fullPath)
-        {
-            string guid = Guid.NewGuid().ToString();
-            Console.Write("Enter Name : ");
-            string name = Console.ReadLine().Trim();
-            Console.Write("Enter Weapon : ");
-            string weapon = Console.ReadLine().Trim();
-            string newData = $"{guid},{name},{weapon};";
-            string a = File.ReadAllText(fullPath);
-            string[] rows = a.Split(';');
-            // Array.Resize<string>(ref rows, rows.Length+1);
-            rows[rows.Length - 1] = newData;
-            string content = string.Join(";", rows);
-            File.WriteAllText(fullPath, content);
-            dispatchSuccess("Data Added Successfully");
-        }
-
-        static string[] getAllData(string fullPath)
-        {
-            string allData = File.ReadAllText(fullPath);
-            string[] rows = allData.Split(';');
-            return rows;
-        }
-
-        static void getAllNames(string fullPath)
-        {           
-           string[] rows = getAllData(fullPath);
-           for (int i = 0; i < rows.Length; i++)
-            {
-
-                if(rows[i].Length > 0)
-                {
-                    string[] data = rows[i].Split(',');
-                    // Display only name
-                    Console.WriteLine(data[1]);
-                }
-            }
-            dispatchSuccess("Data Generated Successfully");
+            FizzBuzz();
         }
 
         static void FizzBuzz()
@@ -188,15 +34,17 @@ namespace MyApp2
             Console.WriteLine();
             for (int i = 1; i <= number; i++)
             {
-                if(i % multiplier == 0)
-                {   
+                if (i % multiplier == 0)
+                {
                     Console.ForegroundColor = ConsoleColor.DarkYellow;
                     Console.WriteLine("FizzBuzz");
-                } else if(i % 2 == 0)
+                }
+                else if (i % 2 == 0)
                 {
                     Console.ForegroundColor = ConsoleColor.Blue;
                     Console.WriteLine("Fizz");
-                } else if (i % 2 != 0)
+                }
+                else if (i % 2 != 0)
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.WriteLine("Buzz");
@@ -316,7 +164,7 @@ namespace MyApp2
                     if (life > 0)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("Wrong, the number is " + ((answer < target) ? "greater" : "less") + " than your answer"); 
+                        Console.WriteLine("Wrong, the number is " + ((answer < target) ? "greater" : "less") + " than your answer");
                     }
                     else
                     {
