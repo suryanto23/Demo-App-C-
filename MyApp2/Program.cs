@@ -20,6 +20,44 @@ namespace MyApp2
             dataText();
         }
 
+        static void updateData(string fullPath)
+        {
+            string[] rows = getAllData(fullPath);
+            for (int i = 0; i < rows.Length; i++)
+            {
+                if(rows[i].Length > 0)
+                {
+                    string[] data = rows[i].Split(',');
+                    Console.Write($"[{i}] ");
+                    Console.WriteLine(data[1]);  
+
+                }
+            }
+            Console.WriteLine();
+            Console.Write("Insert data number: ");
+            int input;
+            int.TryParse(Console.ReadLine() , out input);
+            bool res = (input >= 0 && input < rows.Length) ? rows[input].Length>0 : false ;
+            if (res)
+            {
+                string[] data = rows[input].Split(',');               
+                dispatchWarning($"You are now editting: Name: {data[1]}, Weapon: {data[2]}");
+                string guid = data[0];
+                Console.Write("Enter New Name : ");
+                string name = Console.ReadLine().Trim();
+                if (name.Length == 0) name = data[1];
+                Console.Write("Enter New Weapon : ");
+                string weapon = Console.ReadLine().Trim();
+                if (weapon.Length == 0) weapon = data[2];
+                string newData = $"{guid},{name},{weapon};";
+                rows[input] = newData;
+                string updatedData = string.Join(";", rows);
+                File.WriteAllText(fullPath, updatedData);
+                dispatchSuccess("File Updated!");
+            }
+            else dispatchFail("Data not found");
+        }
+
         static void dataText()
         {
             string fileName = "data.txt";
@@ -45,7 +83,7 @@ namespace MyApp2
                         insertData(fullPath);
                         break;
                     case 3:
-
+                        updateData(fullPath);
                         break;
                     case 4:
                         deleteData(fullPath);
@@ -89,7 +127,14 @@ namespace MyApp2
             Console.WriteLine();
             Console.ResetColor();
         }
-
+        static void dispatchWarning(string text)
+        {
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.DarkYellow;
+            Console.WriteLine(text);
+            Console.WriteLine();
+            Console.ResetColor();
+        }
         static void dispatchFail(string text)
         {
             Console.WriteLine();
